@@ -1,0 +1,14 @@
+{
+  "product_id": "TNDS-APP-NEXT-MOVE-001",
+  "product_name": "Next Move - Career Discovery Field Guide",
+  "version": "1.3.0",
+  "package_type": "public-source-github-ready",
+  "status": "packaged_not_published",
+  "license": "TNDS all rights reserved for original source; embedded O*NET Tools Developer License; optional database CC BY 4.0",
+  "entrypoint": "Next-Move.html",
+  "official_assessment": "2016 published 30-item O*NET Mini-IP",
+  "network": "no API calls or telemetry; external official links on user click",
+  "hosted_email": false,
+  "store_checkout": false,
+  "revenue_recon_integration": false
+}

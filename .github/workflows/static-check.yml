@@ -1,0 +1,23 @@
+name: Next Move source checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  build-and-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check JavaScript syntax
+        run: node --check src/data.js && node --check src/app.js
+      - name: Rebuild standalone app
+        run: python3 scripts/build.py
+      - name: Check generic release hygiene and attribution
+        run: python3 tests/test_public_static.py

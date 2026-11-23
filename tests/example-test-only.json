@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-11-23T02:29:31.152Z",
+  "displayName": "Participant",
+  "answers": {
+    "1": "Test: I enjoy making things but not late schedules.",
+    "2": "Test: too little opportunity to grow.",
+    "12": 2,
+    "18": [
+      "Good income",
+      "Job security",
+      "Personal freedom and reasonable hours"
+    ],
+    "19": {
+      "today": "Personal target, not a prediction"
+    },
+    "22": "Test: First look at order timestamps and handoffs. Then ask teammates.",
+    "30": {
+      "future": "Test: I want time, growth and good friends.",
+      "firstTest": "Test: interview a repair technician."
+    }
+  },
+  "reflections": {
+    "useful": "Test: fixing practical problems."
+  },
+  "thinking": {
+    "22": [
+      "evidence",
+      "perspectives"
+    ]
+  },
+  "lenses": {
+    "hands": 5,
+    "diagnose": 5,
+    "create": 4,
+    "people": 3,
+    "systems": 4,
+    "tech": 4
+  },
+  "onetAnswers": {},
+  "pins": [
+    "repair"
+  ],
+  "dismissed": [],
+  "experiments": [
+    {
+      "id": "e-1795400974737-163538",
+      "title": "TEST: talked with a repair technician",
+      "lane": "repair",
+      "mode": "Interview",
+      "date": "",
+      "status": "completed",
+      "energy": 4,
+      "curiosity": 5,
+      "repeat": 5,
+      "notes": "Test observation: I like tracing problems and working with tools.",
+      "next": ""
+    }
+  ],
+  "resourceNotes": {},
+  "saveOnDevice": false,
+  "demo": false,
+  "exportedAt": "2026-11-23T02:29:35.847Z",
+  "appVersion": "1.3.0"
+}

@@ -1,0 +1,11 @@
+{
+  "name": "tnds-next-move-template",
+  "version": "1.3.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "build:hosted-review-only": "node scripts/build.mjs --hosted-email",
+    "test:syntax": "node --check src/app.js && node --check src/data.js"
+  }
+}

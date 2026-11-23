@@ -1,0 +1,17 @@
+.DS_Store
+__pycache__/
+*.pyc
+node_modules/
+.env
+.env.*
+*.zip
+*.nmove
+*.nmove.json
+*.private.json
+*backup*.json
+*.log
+dist/
+.tmp/
+.venv/
+playwright-report/
+test-results/

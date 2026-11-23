@@ -1,0 +1,30 @@
+name: Feature suggestion
+description: Propose a feature without submitting real participant information.
+title: "[Idea]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Proposals are welcome for discussion. They are not commitments to
+        implement features, and do not authorize use of the TNDS source code.
+        Do not post actual assessment answers or personal information.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      placeholder: Describe the situation using only fictitious examples.
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Proposed behavior
+    validations:
+      required: true
+  - type: checkboxes
+    id: safe
+    attributes:
+      label: Privacy confirmation
+      options:
+        - label: I did not include real participant information or credentials.
+          required: true

@@ -1,0 +1,136 @@
+/*
+ * Next Move v1.3.0 — Original questionnaire and illustrative career exploration data.
+ * This file deliberately contains no user answers or analytics code.
+ * The questionnaire is not a validated psychological or vocational assessment.
+ */
+(function () {
+  "use strict";
+
+  const questions = {
+    story: [
+      { id: 1, kind: "long", text: "If your current line of work paid well, respected your time, and gave you room to grow, would you still consider changing fields? Why?", hint: "Try to separate the work itself from the conditions surrounding it." },
+      { id: 2, kind: "long", text: "What three things about your current or past jobs have frustrated you the most?", hint: "Think about work duties, managers, pay, schedule, culture, and growth." },
+      { id: 3, kind: "long", text: "What parts of past jobs, training, school, volunteering, or personal projects did you genuinely enjoy, even if you no longer do them?", hint: "Look for activities, not job titles." },
+      { id: 4, kind: "long", text: "Describe two moments when you felt proud, capable, or completely focused on something you were doing.", hint: "They do not have to involve work." },
+      { id: 5, kind: "long", text: "What are you good at doing but don't particularly enjoy? What do you enjoy but haven't become good at yet?", hint: "Being good at something does not mean you must make a career of it." },
+      { id: 6, kind: "long", text: "If you could change one thing about your working life immediately, what would you change?", hint: "Choose your own priority, not somebody else's." }
+    ],
+    interests: [
+      { id: 7, kind: "long", text: "When nobody tells you what to do and you have free time, what do you naturally spend that time doing?", hint: "What you actually do is more useful than what sounds impressive." },
+      { id: 8, kind: "long", text: "What do friends, family, or coworkers regularly come to you for help with?", hint: "Mention everyday things as well as formal skills." },
+      { id: 9, kind: "long", text: "What subjects, problems, or activities can get you talking for a long time?", hint: "Include odd or unexpected interests." },
+      { id: 10, kind: "long", text: "What is something difficult you have stuck with because you genuinely wanted to learn or master it?", hint: "How did you keep going when it got difficult?" },
+      { id: 11, kind: "long", text: "Imagine that job titles and qualifications don't exist. What three kinds of activities would you want to spend your working day doing?", hint: "Examples: fixing, explaining, making, improving, organizing, exploring." }
+    ],
+    workstyle: [
+      { id: 12, kind: "scale", text: "What balance of physical and computer work sounds best?", left: "Mostly physical / hands-on", right: "Mostly computer / desk-based" },
+      { id: 13, kind: "scale", text: "How do you prefer to interact with other people at work?", left: "Mostly independent", right: "Frequent teamwork / interaction" },
+      { id: 14, kind: "scale", text: "How much freedom do you prefer in deciding how to do the work?", left: "Clear instructions / procedures", right: "Design my own approach" },
+      { id: 15, kind: "scale", text: "What balance of routine and variety do you want?", left: "Familiar, repeatable work", right: "Different challenges every day" },
+      { id: 16, kind: "scale", text: "What kind of results feel most satisfying?", left: "Finish something tangible today", right: "Build a larger result over time" },
+      { id: 17, kind: "scale", text: "Which earning situation would you rather explore?", left: "Predictable compensation", right: "Higher upside, more uncertainty", hint: "A preference, not a commitment to accept financial risk." }
+    ],
+    values: [
+      { id: 18, kind: "top3", text: "Which THREE things matter most to you in work?", hint: "Select up to three; your top three can change over time." },
+      { id: 19, kind: "salary", text: "What income would make you feel financially comfortable today? And what would you hope to earn in three years?", hint: "Optional. This is private and is not used to rank careers." },
+      { id: 20, kind: "long", text: "How much time would you realistically invest in learning a new career?", hint: "Consider apprenticeships, certification, college, on-the-job training, self-study, and any debt you would or wouldn't accept." },
+      { id: 21, kind: "long", text: "What are your nonnegotiables in a job or career?", hint: "Think about schedule, location, travel, physical demands, working conditions, values, and management." }
+    ],
+    thinking: [
+      { id: 22, kind: "scenario", title: "The broken operation", text: "You join a company where the same orders are late every week. Employees blame each other, and management wants it fixed. What are the first three things you would do?", hint: "What would you check? How would you know the actual cause?" },
+      { id: 23, kind: "scenario", title: "The inefficient process", text: "You notice a task that takes employees two hours every day. You believe there may be a better method. How would you investigate and improve it?", hint: "What would you measure? Who would you involve?" },
+      { id: 24, kind: "scenario", title: "The difficult conversation", text: "A coworker repeatedly fails to complete their responsibilities, creating extra work for you. How would you address it? What if they became defensive?", hint: "Consider what you know, what you don't know, and how the relationship matters." },
+      { id: 25, kind: "scenario", title: "The career decision", text: "You receive two job offers. One has stable pay, reliable hours, and limited advancement. The other has greater earning potential and faster advancement but less certainty. What information would you gather before deciding?", hint: "Which tradeoffs matter most to you?" },
+      { id: 26, kind: "scenario", title: "Learning something new", text: "Someone offers you a job involving a tool, machine, or software system you've never used. You have three days to prepare. How would you learn enough to get started safely, and how would you check your understanding?", hint: "What would you do first? What work would require supervision?" },
+      { id: 27, kind: "scenario", title: "The business opportunity", text: "You have one weekend and $100 to test a small business idea. You cannot spend more money. What would you attempt, how would you find out if people wanted it, and what would convince you to continue or stop?", hint: "It's also okay to say you do not want to run a business." }
+    ],
+    future: [
+      { id: 28, kind: "long", text: "Name three jobs, industries, or businesses you have wondered about, even if you know almost nothing about them.", hint: "Include at least one unusual option if you can." },
+      { id: 29, kind: "long", text: "Name three kinds of work you would NOT want to do. What makes each unattractive?", hint: "Dislikes help you narrow choices without limiting possibilities too soon." },
+      { id: 30, kind: "vision", text: "Imagine yourself five years from now. What would make you feel satisfied with your life beyond a job title?", hint: "Think about your life as a whole. Then identify one small thing you'd be willing to try this month." }
+    ]
+  };
+
+  const reflections = [
+    { id: "useful", text: "I feel most useful when…" },
+    { id: "bored", text: "I lose interest when…" },
+    { id: "wish", text: "I wish I had more opportunities to…" },
+    { id: "prove", text: "Something I want to prove to myself is…" },
+    { id: "unjudged", text: "One thing I would like to try without being judged is…" }
+  ];
+
+  const workValues = [
+    "Good income", "Job security", "Independence", "Respect", "Becoming an expert",
+    "Creativity", "Helping others", "Leadership", "Advancement", "Personal freedom and reasonable hours"
+  ];
+
+  const thinkingMoves = [
+    { id: "evidence", label: "I looked for evidence" },
+    { id: "perspectives", label: "I considered other people" },
+    { id: "firststep", label: "I identified a practical first step" },
+    { id: "alternatives", label: "I considered alternatives" },
+    { id: "recheck", label: "I described how I'd check or change course" }
+  ];
+
+  // These are original, informal interest prompts; never label them O*NET scores.
+  const lenses = [
+    { id: "hands", title: "Make or fix things", desc: "Work with tools, equipment, materials, or your hands.", icon: "🛠️" },
+    { id: "diagnose", title: "Find out why", desc: "Trace failures, inspect evidence, and solve puzzles.", icon: "🔎" },
+    { id: "create", title: "Create something new", desc: "Design, film, craft, invent, or make ideas tangible.", icon: "✦" },
+    { id: "people", title: "Connect with people", desc: "Listen, help, communicate, and build relationships.", icon: "◎" },
+    { id: "lead", title: "Organize a team", desc: "Take responsibility, plan, persuade, and lead.", icon: "↗" },
+    { id: "systems", title: "Make systems work better", desc: "Improve workflows, organize, measure, and simplify.", icon: "⚙" },
+    { id: "teach", title: "Help someone learn", desc: "Show, explain, coach, and support progress.", icon: "◉" },
+    { id: "outdoors", title: "Be out in the field", desc: "Move between locations and work outside or on-site.", icon: "☀" },
+    { id: "business", title: "Build an opportunity", desc: "Sell ideas, find customers, or create a business.", icon: "▥" },
+    { id: "tech", title: "Work with technology", desc: "Explore devices, code, software, or modern systems.", icon: "⌘" }
+  ];
+
+  // A broad, illustrative opportunity library. These are NOT occupational-fit predictions.
+  // The 'tags' support transparent exploration ordering; users can ignore that order.
+  const lanes = [
+    { id: "repair", name: "Equipment & mechanical repair", family: "Hands-on", blurb: "Diagnose what is broken, repair it, and see concrete results.", roles: ["HVAC service technician", "Industrial maintenance apprentice", "Appliance service technician"], tags: ["hands", "diagnose", "outdoors"], workstyle: { 12: 1, 15: 4, 16: 1 }, firstTest: "Ask to shadow a technician and write down the sequence they use to diagnose a fault.", watchout: "Training, physical demands, service calls, and licensing can vary by role and location.", learning: "Investigate apprenticeships, employer training, or recognized technical programs." },
+    { id: "electrical", name: "Electrical & controls trades", family: "Hands-on", blurb: "Install, troubleshoot, and maintain electrical or control systems.", roles: ["Electrical apprentice", "Low-voltage technician", "Controls technician"], tags: ["hands", "diagnose", "systems"], workstyle: { 12: 1, 14: 2 }, firstTest: "Interview an apprentice about a typical workday, supervision, training, and safety rules.", watchout: "Electrical work can be hazardous and is often regulated. Observation only unless properly supervised and authorized.", learning: "Check local apprenticeship and licensing requirements before enrolling." },
+    { id: "vehicles", name: "Fleet & vehicle technology", family: "Hands-on", blurb: "Keep vehicles and equipment working through maintenance and troubleshooting.", roles: ["Diesel service apprentice", "Fleet maintenance coordinator", "Automotive parts specialist"], tags: ["hands", "diagnose", "systems"], workstyle: { 12: 1, 16: 1 }, firstTest: "Visit a reputable service department and ask to observe their inspection and work-order process.", watchout: "Shop conditions, tools, physical demands, and certification requirements differ.", learning: "Compare entry-level training and employer-sponsored pathways." },
+    { id: "fabrication", name: "Fabrication & making", family: "Creative", blurb: "Build physical products and improve how they look or work.", roles: ["Cabinetmaking apprentice", "Metal fabrication trainee", "Prototype shop assistant"], tags: ["hands", "create", "diagnose"], workstyle: { 12: 1, 16: 1 }, firstTest: "Make a simple, low-cost object with everyday materials and ask someone to evaluate usefulness.", watchout: "Tool safety, repetitive work, and inconsistent early earnings in custom work.", learning: "Explore trade programs, makerspaces, and entry-level production roles." },
+    { id: "precision", name: "Precision manufacturing", family: "Hands-on", blurb: "Make, inspect, and improve products requiring careful attention to detail.", roles: ["CNC operator trainee", "Manufacturing quality inspector", "Production technician"], tags: ["hands", "systems", "diagnose"], workstyle: { 12: 2, 14: 1 }, firstTest: "Tour an employer or training facility and compare machine setup, inspection, and production roles.", watchout: "Shift work and repetitive processes can be common in some shops.", learning: "Research certifications, technical colleges, and paid training programs." },
+    { id: "fieldops", name: "Facilities & field operations", family: "Hands-on", blurb: "Keep buildings, equipment, and physical operations running smoothly.", roles: ["Facilities technician", "Property maintenance coordinator", "Field operations assistant"], tags: ["hands", "outdoors", "systems", "people"], workstyle: { 12: 2, 15: 4 }, firstTest: "Shadow a facilities team for a morning and track the different work requests they handle.", watchout: "On-call hours, travel, and physical demands depend on the employer.", learning: "Compare maintenance, facilities, and building systems entry routes." },
+    { id: "logistics", name: "Logistics & dispatch", family: "Systems", blurb: "Get products, people, and resources to the right place at the right time.", roles: ["Logistics coordinator", "Dispatch specialist", "Transportation planner assistant"], tags: ["systems", "people", "lead", "diagnose"], workstyle: { 12: 4, 15: 4 }, firstTest: "Plan a fictional delivery route with last-minute delays, then explain your tradeoffs.", watchout: "Interruptions, deadline pressure, and irregular hours can occur.", learning: "Explore entry-level operations roles and common scheduling tools." },
+    { id: "purchasing", name: "Purchasing & inventory", family: "Systems", blurb: "Keep needed materials available, reduce waste, and work with suppliers.", roles: ["Purchasing assistant", "Inventory coordinator", "Foodservice buyer trainee"], tags: ["systems", "people", "diagnose", "business"], workstyle: { 12: 4, 14: 2 }, firstTest: "Analyze a fictional inventory list and decide what to reorder under a small budget.", watchout: "Can involve substantial computer work and detailed records.", learning: "Research procurement, inventory software, and entry-level buying roles." },
+    { id: "quality", name: "Quality & safety operations", family: "Systems", blurb: "Improve consistency, check standards, and prevent costly errors.", roles: ["Quality assurance technician", "Food safety coordinator", "Safety program assistant"], tags: ["systems", "diagnose", "teach"], workstyle: { 12: 3, 14: 1 }, firstTest: "Review a fictional checklist and identify where unclear instructions could cause mistakes.", watchout: "Some roles require credentials, documentation, and willingness to enforce standards.", learning: "Look at quality technician and safety-support education requirements." },
+    { id: "analysis", name: "Operations improvement & analysis", family: "Systems", blurb: "Find bottlenecks, compare options, and help teams work more efficiently.", roles: ["Operations coordinator", "Process improvement assistant", "Inventory analyst trainee"], tags: ["systems", "diagnose", "tech", "people"], workstyle: { 12: 5, 16: 4 }, firstTest: "Map a familiar task, time each step, and suggest one safe improvement.", watchout: "Some positions demand strong spreadsheet skills or experience.", learning: "Try introductory spreadsheet, process-mapping, and analyst exercises." },
+    { id: "support", name: "IT support & troubleshooting", family: "Technology", blurb: "Help people fix devices and software; learn by diagnosing problems.", roles: ["IT support specialist", "Computer repair technician", "Help desk associate"], tags: ["tech", "diagnose", "people", "teach"], workstyle: { 12: 4, 15: 4 }, firstTest: "Set up a spare computer or help a willing friend solve a harmless device issue.", watchout: "Customer frustration, desk time, and ongoing learning are part of many roles.", learning: "Compare entry-level help desk jobs and introductory IT certifications." },
+    { id: "automation", name: "Digital tools & automation", family: "Technology", blurb: "Make work simpler using software, connected tools, and repeatable systems.", roles: ["Junior workflow specialist", "No-code automation assistant", "Software quality tester"], tags: ["tech", "systems", "diagnose", "create"], workstyle: { 12: 5, 16: 5 }, firstTest: "Automate a small personal task with a free tool, and see whether the problem-solving is fun.", watchout: "Tools change quickly and self-directed learning is continuous.", learning: "Try a free guided project before paying for a course." },
+    { id: "technicalsales", name: "Technical & industrial sales", family: "People", blurb: "Understand customer problems and help them choose useful products or services.", roles: ["Equipment sales associate", "Foodservice distributor representative", "Parts sales specialist"], tags: ["people", "business", "lead", "diagnose"], workstyle: { 13: 5, 15: 4, 17: 4 }, firstTest: "Interview a sales rep about how they earn trust, learn products, and handle rejection.", watchout: "Commission structures, targets, travel, and income variability differ widely.", learning: "Compare base-pay and commission roles before considering an offer." },
+    { id: "teaching", name: "Training & coaching", family: "People", blurb: "Help people learn skills and get better at something concrete.", roles: ["Workplace training assistant", "Vocational skills mentor", "Product trainer"], tags: ["teach", "people", "lead", "create"], workstyle: { 13: 5, 16: 5 }, firstTest: "Teach a friend a practical skill and ask what explanation helped most.", watchout: "Some teaching roles require credentials and patience with repeated instruction.", learning: "Explore training support roles and employer learning departments." },
+    { id: "community", name: "Community & public service", family: "People", blurb: "Solve practical problems while serving other people or the community.", roles: ["Community program assistant", "Municipal services worker", "Emergency services support specialist"], tags: ["people", "lead", "outdoors", "teach"], workstyle: { 13: 5, 15: 5 }, firstTest: "Volunteer for one supervised community event and notice what responsibilities energize you.", watchout: "Emotional demands, schedules, and credential requirements vary substantially.", learning: "Check verified requirements for each specific role." },
+    { id: "healthtech", name: "Healthcare support & equipment", family: "Hands-on", blurb: "Work in structured care environments, including technical support roles.", roles: ["Biomedical equipment tech trainee", "Sterile processing trainee", "Medical device support assistant"], tags: ["hands", "diagnose", "systems", "people"], workstyle: { 12: 2, 14: 1 }, firstTest: "Speak with a technician about training and how their role protects people.", watchout: "Safety, confidentiality, infection control, and certification requirements can be strict.", learning: "Verify employer and state requirements before training or practice." },
+    { id: "environment", name: "Outdoor & environmental work", family: "Outdoors", blurb: "Work in the field maintaining sites, systems, or public spaces.", roles: ["Parks maintenance technician", "Water systems trainee", "Conservation field assistant"], tags: ["outdoors", "hands", "diagnose"], workstyle: { 12: 1, 15: 5 }, firstTest: "Join a safe, supervised outdoor volunteer project and pay attention to the work itself.", watchout: "Weather, travel, seasonality, and certificates may affect availability.", learning: "Research municipal programs, utilities, and environmental technician routes." },
+    { id: "creative", name: "Video, content & media", family: "Creative", blurb: "Turn ideas into stories, images, or experiences people can use.", roles: ["Video editor trainee", "Production assistant", "Product photographer"], tags: ["create", "tech", "people"], workstyle: { 14: 5, 16: 5 }, firstTest: "Produce a 45-second original video about a subject you actually enjoy.", watchout: "Freelance income can be unpredictable; some roles involve extensive screen time.", learning: "Build a few samples before buying expensive software or equipment." },
+    { id: "marketing", name: "Marketing & community building", family: "Creative", blurb: "Learn what people need and communicate useful ideas clearly.", roles: ["Marketing coordinator", "Community specialist", "Content operations assistant"], tags: ["create", "people", "business", "tech"], workstyle: { 12: 5, 14: 4 }, firstTest: "Make two different one-page flyers for a hypothetical community event and ask for feedback.", watchout: "May require writing, revision, analytics, and steady computer work.", learning: "Try free marketing fundamentals courses and portfolio projects." },
+    { id: "events", name: "Events & live production", family: "Creative", blurb: "Bring people and moving parts together to make an experience happen.", roles: ["Event operations assistant", "Live production crew", "Venue coordinator"], tags: ["create", "people", "lead", "systems", "hands"], workstyle: { 15: 5, 13: 5 }, firstTest: "Volunteer on the setup or logistics crew for a local event.", watchout: "Nights, weekends, and time pressure can be part of the job.", learning: "Research entry-level venue and production support roles." },
+    { id: "foodbeyond", name: "Food beyond restaurants", family: "Food-adjacent", blurb: "Use culinary knowledge in production, training, quality, or product work.", roles: ["Food product development assistant", "Food production supervisor trainee", "Culinary product demonstrator"], tags: ["create", "systems", "teach", "people"], workstyle: { 12: 3, 15: 4 }, firstTest: "Interview a food-production or distribution professional about how their work differs from restaurants.", watchout: "The work still involves food systems; don't assume it resolves restaurant burnout.", learning: "Explore roles that value culinary training without regular restaurant shifts." },
+    { id: "smallbiz", name: "Small business & self-employment", family: "Business", blurb: "Choose a problem to solve, reach customers, and own the results.", roles: ["Local service operator", "Small-scale product maker", "Independent project specialist"], tags: ["business", "lead", "people", "create", "hands"], workstyle: { 14: 5, 17: 5 }, firstTest: "Interview five potential customers about a small problem before buying anything.", watchout: "Cash flow, sales, taxes, insurance, and uncertainty are real responsibilities.", learning: "Test one offer on paper and learn basic business finances before launching." },
+    { id: "bookkeeping", name: "Financial & office operations", family: "Systems", blurb: "Make transactions, records, and repeatable business processes reliable.", roles: ["Bookkeeping assistant", "Accounts payable clerk", "Office operations coordinator"], tags: ["systems", "tech", "diagnose"], workstyle: { 12: 5, 15: 1, 14: 1 }, firstTest: "Organize a fictional set of business transactions into a clear monthly summary.", watchout: "Detail-heavy and often desk-based, with busy periods around deadlines.", learning: "Try a free bookkeeping or spreadsheet fundamentals course." }
+  ];
+
+  const resources = [
+    { title: "O*NET Interest Profiler", category: "Interest discovery", url: "https://onetinterestprofiler.org/", desc: "A research-based, independent interest assessment. Complete it on the official site; enter any useful observations here." },
+    { title: "CareerOneStop Work Values Matcher", category: "Work values", url: "https://www.careeronestop.org/Toolkit/Careers/work-values-matcher.aspx", desc: "A 20-card activity to explore what matters in a workplace." },
+    { title: "CareerOneStop Skills Matcher", category: "Transferable skills", url: "https://www.careeronestop.org/Toolkit/Skills/skills-matcher.aspx", desc: "Compare skills you already have with occupations that use them." },
+    { title: "BLS Occupational Outlook Handbook", category: "Reality check", url: "https://www.bls.gov/ooh/", desc: "Research duties, education, pay, and projected demand before making commitments." },
+    { title: "My Next Move", category: "Career research", url: "https://www.mynextmove.org/", desc: "Browse the world of work without knowing a job title in advance." }
+  ];
+
+
+  // Unmodified, published 2016 O*NET Mini-IP content; five items per interest.
+  // See docs/ONET_SOURCES_AND_LICENSE.md before commercial redistribution.
+  const onetMini = Object.freeze({
+    form: "Published 2016 Mini-IP (30 items)",
+    source: "https://www.onetcenter.org/dl_files/Mini-IP.pdf",
+    license: "https://www.onetcenter.org/license_toolsdev.html",
+    items: [{"id":1,"area":"R","text":"Build kitchen cabinets"},{"id":2,"area":"I","text":"Develop a new medicine"},{"id":3,"area":"A","text":"Write books or plays"},{"id":4,"area":"S","text":"Help people with personal or emotional problems"},{"id":5,"area":"E","text":"Manage a department within a large company"},{"id":6,"area":"C","text":"Install software across computers on a large network"},{"id":7,"area":"R","text":"Repair household appliances"},{"id":8,"area":"I","text":"Study ways to reduce water pollution"},{"id":9,"area":"A","text":"Compose or arrange music"},{"id":10,"area":"S","text":"Give career guidance to people"},{"id":11,"area":"E","text":"Start your own business"},{"id":12,"area":"C","text":"Operate a calculator"},{"id":13,"area":"R","text":"Assemble electronic parts"},{"id":14,"area":"I","text":"Conduct chemical experiments"},{"id":15,"area":"A","text":"Create special effects for movies"},{"id":16,"area":"S","text":"Perform rehabilitation therapy"},{"id":17,"area":"E","text":"Negotiate business contracts"},{"id":18,"area":"C","text":"Keep shipping and receiving records"},{"id":19,"area":"R","text":"Drive a truck to deliver packages to offices and homes"},{"id":20,"area":"I","text":"Examine blood samples using a microscope"},{"id":21,"area":"A","text":"Paint sets for plays"},{"id":22,"area":"S","text":"Do volunteer work at a non-profit organization"},{"id":23,"area":"E","text":"Market a new line of clothing"},{"id":24,"area":"C","text":"Inventory supplies using a hand-held computer"},{"id":25,"area":"R","text":"Test the quality of parts before shipment"},{"id":26,"area":"I","text":"Develop a way to better predict the weather"},{"id":27,"area":"A","text":"Write scripts for movies or television shows"},{"id":28,"area":"S","text":"Teach a high-school class"},{"id":29,"area":"E","text":"Sell merchandise at a department store"},{"id":30,"area":"C","text":"Stamp, sort, and distribute mail for an organization"}]
+  });
+  window.NM_DATA = Object.freeze({ questions, reflections, workValues, thinkingMoves, lenses, lanes, resources, onetMini });
+  console.info("[Next Move] Question and career exploration library loaded; no personal data logged.");
+})();
