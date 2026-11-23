@@ -8,6 +8,10 @@ or another third party has reviewed, approved, or endorsed Next Move.
 
 ## [Unreleased]
 
+### Documentation
+- Apply the standard TNDS GitHub README header, brand links, and contact section.
+- Clarify public-repository status and retain separate O*NET licensing.
+
 ### Planned / not released
 - No new functionality has been approved. Ideas are tracked separately from releases.
 

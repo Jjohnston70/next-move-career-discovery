@@ -1,4 +1,14 @@
-# Next Move — Career Discovery Field Guide
+<!-- TNDS-HEADER:BEGIN -->
+<div align="center">
+  <h1>Next Move: Career Discovery</h1>
+  <h3>Explore career interests, skills, and next steps—without being told what you have to become</h3>
+  <img src="https://raw.githubusercontent.com/Jjohnston70/Jjohnston70/main/true-north-logo-layered-v3.png" alt="True North Data Strategies" width="240" />
+  <br /><br />
+  <a href="https://truenorthstrategyops.com"><img src="https://img.shields.io/badge/Built%20by-TNDS-1F6FEB?style=for-the-badge" alt="Built by TNDS" /></a>
+  <a href="#license"><img src="https://img.shields.io/badge/License-See%20Terms-0A8EA0?style=for-the-badge" alt="License: See Terms" /></a>
+  <a href="#contact"><img src="https://img.shields.io/badge/Contact-TNDS-181717?style=for-the-badge" alt="Contact TNDS" /></a>
+</div>
+<!-- TNDS-HEADER:END -->
 
 **Version 1.3.0 · A public-source career-exploration app from True North Data Strategies LLC**
 
@@ -66,10 +76,19 @@ The browser-test scripts assume Chromium at `/usr/bin/chromium` and can be adapt
 - [Contributions](CONTRIBUTING.md) require owner approval; visible source is
   not an open-source grant.
 
-## License and O*NET attribution
+## License
+
+### O*NET attribution
 
 **Public GitHub visibility is not an open-source license.** Original TNDS code and content are currently **all rights reserved**, pending a separate owner license decision. The embedded O*NET source content is separately licensed under the [O*NET Tools Developer License](https://www.onetcenter.org/license_toolsdev.html); do not treat it as TNDS proprietary material. See `LICENSE.md` and `THIRD_PARTY_NOTICES.md` for full details.
 
 > This application includes information from the O*NET Career Exploration Tools by the U.S. Department of Labor, Employment and Training Administration (USDOL/ETA), used under the O*NET Tools Developer License. O*NET® is a trademark of USDOL/ETA. USDOL/ETA has not approved, endorsed, or tested the Next Move application.
 
-**Status:** Public-source repository package prepared; NOT published to GitHub automatically. No hosted email, live O*NET API or store checkout has been deployed.
+**Status:** Public GitHub source repository available. No hosted email, live O*NET API or store checkout has been deployed.
+
+
+## Contact
+
+**True North Data Strategies LLC** — Turning Data into Direction  
+Jacob Johnston | 719-204-6365 | [jacob@truenorthstrategyops.com](mailto:jacob@truenorthstrategyops.com)  
+[truenorthstrategyops.com](https://truenorthstrategyops.com)
